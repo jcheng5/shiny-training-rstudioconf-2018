@@ -1,14 +1,14 @@
 library(shiny)
 
-# Define UI for bookmarking demo app --------------------------------
+# Define UI for app with multiple tabs ------------------------------
 ui <- function(request) {
   fluidPage(
     tabsetPanel(id = "tabs",
-      tabPanel("One",
+      tabPanel("Tab one",
         checkboxInput("chk1", "Checkbox 1"),
         bookmarkButton(id = "bookmark1")
       ),
-      tabPanel("Two",
+      tabPanel("Tab two",
         checkboxInput("chk2", "Checkbox 2"),
         bookmarkButton(id = "bookmark2")
       )
@@ -16,7 +16,7 @@ ui <- function(request) {
   )
 }
 
-# Define server logic for bookmarking demo app ----------------------
+# Define server logic for app with multiple tabs and bookmarking ----
 server <- function(input, output, session) {
   
   # Need to exclude the buttons from themselves being bookmarked
