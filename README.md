@@ -39,11 +39,11 @@ Slides and demo materials for the 2-day Intermediate Shiny Workshop at Genentech
 11am - 11:30pm    - Modules (06-modules)
 11:30am - 12pm    - Bookmarking (07-bookmarking)
 12 - 1pm - 		  - Lunch
-1 - 1:30pm		  - Interactive data visualizations (08-interactive-ggplot2)
+1 - 1:30pm		  - Interactive data visualizations (08-interactive-viz)
 1:30 - 2pm        - Dashboards (09-dashboards)
-2 - 2:30pm 	      - Troubleshooting (09-troubleshooting)
+2 - 2:30pm 	      - Troubleshooting (10-troubleshooting)
 2:30 - 3pm        - Break
-3 - 4pm           - Guided sandbox exercise
+3 - 4pm           - Guided sandbox exercise (11-sandbox)
 
 ## Notes
 
