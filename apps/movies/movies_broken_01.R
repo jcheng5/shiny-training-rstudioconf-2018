@@ -2,7 +2,6 @@ library(shiny)
 library(ggplot2)
 library(DT)
 library(stringr)
-library(tools)
 library(dplyr)
 load("movies.Rdata")
 

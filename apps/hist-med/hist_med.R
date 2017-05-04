@@ -1,15 +1,6 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
 
-# Define UI for application that draws a histogram and overlays the median
+# Define UI for app that draws a histogram and overlays median ------
 ui <- fluidPage(
   # Application title
   titlePanel("Histogram and median"),
@@ -23,7 +14,7 @@ ui <- fluidPage(
   )
 )
 
-# Define server logic
+# Define server logic -----------------------------------------------
 server <- function(input, output) {
   dist <- reactive({ rnorm(input$n) })
   med  <- reactive({ median(dist()) })
@@ -37,6 +28,6 @@ server <- function(input, output) {
   })
 }
 
-# Run the application 
+# Run the app -------------------------------------------------------
 shinyApp(ui = ui, server = server)
 
