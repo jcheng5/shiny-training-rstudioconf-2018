@@ -3,6 +3,6 @@
 Modules
 
 - 30 min workshop
-- Examples and exercises under apps/gapminder and apps/movies (20-21) and apps/left_right
+- Examples and exercises under [apps/gapminder](/apps/gapminder) and [apps/movies](/apps/movies) (20-21) and apps/left_right
 
 **Note:** Keynote file not committed, see the [slides](/slides) directory for PDF slides.
