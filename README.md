@@ -29,7 +29,7 @@ Slides and demo materials for the 2-day Intermediate Shiny Workshop at Genentech
 9:15 - 10:30am    - A fast introduction to Shiny (01-fast-intro)
 10:30 - 11am      -	Break
 11:00am - 12:00pm - Reactive programming, part 1 (02-reactive-prog-1)
-12 - 1pm - 		  - Lunch
+12 - 1pm - 		    - Lunch
 1 - 2:30pm 	      - Understanding UI (03-understanding-ui)
 2:30 - 3pm        - Break
 3 - 4pm           - Reactive programming, part 2 (04-reactive-prog-2)
@@ -40,8 +40,8 @@ Slides and demo materials for the 2-day Intermediate Shiny Workshop at Genentech
 10:30 - 11am      -	Break
 11am - 11:30pm    - Modules (06-modules)
 11:30am - 12pm    - Bookmarking (07-bookmarking)
-12 - 1pm - 		  - Lunch
-1 - 1:30pm		  - Interactive visualizations with ggplot2 (08-interactive-ggplot2)
+12 - 1pm - 		    - Lunch
+1 - 1:30pm		    - Interactive visualizations with ggplot2 (08-interactive-ggplot2)
 1:30 - 2pm        - Dashboards (09-dashboards)
 2 - 2:30pm 	      - Troubleshooting (09-troubleshooting)
 2:30 - 3pm        - Break
