@@ -8,7 +8,6 @@ Slides and demo materials for the 2-day Intermediate Shiny Workshop at Genentech
 - DT
 - flexdashboard
 - gapminder
-- ggplot2
 - jsonlite
 - lubridate
 - miniUI
@@ -18,8 +17,7 @@ Slides and demo materials for the 2-day Intermediate Shiny Workshop at Genentech
 - shinyjs
 - shinythemes
 - shinytoastr
-- stringr
-- tidyverse
+- tidyverse (specifically using dplyr, ggplot2, stringr)
 
 ## Schedule
 
