@@ -5,4 +5,4 @@ Dashboards
 - 30 min workshop
 - Examples and exercises under ???
 
-TO DO: Add keynote slides
+**Note:** Keynote file not committed, see the [slides](/slides) directory for PDF slides.

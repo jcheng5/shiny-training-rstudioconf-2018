@@ -4,3 +4,5 @@ Reactive programming, part 1
 
 - 1 hour workshop
 - Examples and exercises under apps/movies (06 - 12)
+
+**Note:** Keynote file not committed, see the [slides](/slides) directory for PDF slides.
