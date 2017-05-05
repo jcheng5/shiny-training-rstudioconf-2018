@@ -1,0 +1,71 @@
+---
+title: "flexdashboard + shiny"
+output: 
+ flexdashboard::flex_dashboard:
+   orientation: columns
+   source_code: embed
+   runtime: shiny
+---
+
+```{r global, include=FALSE}
+# load data in 'global' chunk so it can be shared by all users of the dashboard
+library(shiny)
+library(ggplot2)
+library(dplyr)
+```
+
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+checkboxGroupInput("cyl", "Cylinders", choices = c("4", "6", "8"),
+                   selected = c("4", "6", "8"), inline = TRUE
+                   )
+
+sliderInput("hp", "Horsepower",
+            min = min(mtcars$hp), max = max(mtcars$hp),
+            value = range(mtcars$hp)
+            )
+
+radioButtons("plot_type", "Weight plot type", 
+             choices = c("Histogram", "Violin plot"), selected = c("Histogram"))
+```
+
+Outputs
+-----------------------------------------------------------------------
+
+### Scatterplot of weight and miles per gallon
+
+```{r}
+mpg_subset <- reactive({
+  mtcars %>%
+    filter(
+      hp >= input$hp[1],
+      hp <= input$hp[2],
+      cyl %in% input$cyl
+    )
+})
+
+renderPlot({
+  ggplot(mpg_subset(), aes(x = wt, y = mpg, color = factor(cyl))) +
+    geom_point()
+})
+```
+
+### Histogram of weight
+
+```{r}
+renderPlot({
+  
+  if(input$plot_type == "Histogram"){
+    ggplot(mpg_subset(), aes(x = wt)) +
+      geom_histogram(binwidth = 0.25) +
+      coord_cartesian(xlim = range(mtcars$wt)) 
+  }
+  else {
+    ggplot(mpg_subset(), aes(y = wt, x = factor(1))) +
+      geom_violin()
+  }
+    
+})
+```
