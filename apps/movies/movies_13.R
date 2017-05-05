@@ -3,7 +3,7 @@ library(ggplot2)
 library(DT)
 library(stringr)
 library(dplyr)
-library(shinythemes)
+library(tools)
 load("movies.Rdata")
 
 # Define UI for application that plots features of movies -----------
@@ -69,7 +69,7 @@ ui <- fluidPage(
                     label = "Show data table",
                     value = TRUE),
       
-      # Enter text for plot title -----------------------------------
+      # Enter text for plot title ---------------------------------------------
       textInput(inputId = "plot_title", 
                 label = "Plot title", 
                 placeholder = "Enter text to be used as plot title"),
@@ -83,7 +83,7 @@ ui <- fluidPage(
                          choices = c("Documentary", "Feature Film", "TV Movie"),
                          selected = "Feature Film"),
       
-      # Select sample size ------------------------------------------
+      # Select sample size ----------------------------------------------------
       numericInput(inputId = "n_samp", 
                    label = "Sample size:", 
                    min = 1, max = nrow(movies), 
@@ -95,14 +95,14 @@ ui <- fluidPage(
       
       # Show scatterplot --------------------------------------------
       plotOutput(outputId = "scatterplot"),
-      HTML("<br>"),        # a little bit of visual separation
+      br(),        # a little bit of visual separation
       
       # Print number of obs plotted ---------------------------------
-      textOutput(outputId = "n"),
-      HTML("<br><br>"),    # a little bit of visual separation
+      uiOutput(outputId = "n"),
+      br(), br(),    # a little bit of visual separation
 
       # Show data table ---------------------------------------------
-      dataTableOutput(outputId = "moviestable")
+      DT::dataTableOutput(outputId = "moviestable")
     )
   )
 )
@@ -112,50 +112,50 @@ server <- function(input, output, session) {
   
   # Create a subset of data filtering for selected title types ------
   movies_subset <- reactive({
-    movies %>%
-      filter(title_type %in% input$selected_type)
+    req(input$selected_type) # ensure availablity of value before proceeding
+    filter(movies, title_type %in% input$selected_type)
   })
   
   # Update the maximum allowed n_samp for selected type movies ------
   observe({
     updateNumericInput(session, 
                        inputId = "n_samp",
-                       value = nrow(movies_subset())
-                       )
+                       value = min(50, nrow(movies_subset())),
+                       max = nrow(movies_subset())
+    )
   })
   
-  # Create a new data frame that is n_samp observations from selected type movies --
+  # Create new df that is n_samp obs from selected type movies ------
   movies_sample <- reactive({ 
-    movies_subset() %>%
-      sample_n(input$n_samp) 
+    req(input$n_samp) # ensure availablity of value before proceeding
+    sample_n(movies_subset(), input$n_samp)
   })
   
-  # Convert plot_title toTitleCase --------------------------------------------
+  # Convert plot_title toTitleCase ----------------------------------
   pretty_plot_title <- reactive({ toTitleCase(input$plot_title) })
   
-  # Create the scatterplot object the plotOutput function is expecting --------
+  # Create scatterplot object the plotOutput function is expecting --
   output$scatterplot <- renderPlot({
     ggplot(data = movies_sample(), aes_string(x = input$x, y = input$y,
-                                     color = input$z)) +
+                                              color = input$z)) +
       geom_point(alpha = input$alpha, size = input$size) +
       labs(x = toTitleCase(str_replace_all(input$x, "_", " ")),
            y = toTitleCase(str_replace_all(input$y, "_", " ")),
            color = toTitleCase(str_replace_all(input$z, "_", " ")),
            title = pretty_plot_title()
-           )
+      )
   })
   
-  # Print number of movies plotted --------------------------------------------
-  output$n <- renderText({
-      counts <- movies_sample() %>%
-        group_by(title_type) %>%
-        summarise(count = n()) %>%
-        select(count) %>%
-        unlist()
-      paste("There are", counts, input$selected_type, "movies in this dataset.")
+  # Print number of movies plotted ----------------------------------
+  output$n <- renderUI({
+    types <- movies_sample()$title_type %>% 
+      factor(levels = input$selected_type) 
+    counts <- table(types)
+    
+    HTML(paste("There are", counts, input$selected_type, "movies in this dataset. <br>"))
   })
   
-  # Print data table if checked -----------------------------------------------
+  # Print data table if checked -------------------------------------
   output$moviestable <- DT::renderDataTable(
     if(input$show_data){
       DT::datatable(data = movies_sample()[, 1:7], 
@@ -165,6 +165,5 @@ server <- function(input, output, session) {
   )
 }
 
-# Run the application ---------------------------------------------------------
+# Run the application -----------------------------------------------
 shinyApp(ui = ui, server = server)
-

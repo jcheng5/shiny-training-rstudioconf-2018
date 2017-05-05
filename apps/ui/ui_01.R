@@ -21,5 +21,5 @@ server <- function(input, output, session) {
   }, rownames = TRUE)
 }
 
-# Run the app ------------------------------------------------
+# Run the app -------------------------------------------------------
 shinyApp(ui, server)

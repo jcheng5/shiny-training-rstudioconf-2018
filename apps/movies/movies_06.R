@@ -4,19 +4,19 @@ library(DT)
 library(stringr)
 load("movies.Rdata")
 
-# Define UI for application that plots features of movies ---------------------
+# Define UI for application that plots features of movies -----------
 ui <- fluidPage(
   
-  # Application title ---------------------------------------------------------
+  # Application title -----------------------------------------------
   titlePanel("Movie browser"),
   
-  # Sidebar layout with a input and output definitions ------------------------
+  # Sidebar layout with a input and output definitions --------------
   sidebarLayout(
     
-    # Inputs: Select variables to plot ----------------------------------------
+    # Inputs: Select variables to plot ------------------------------
     sidebarPanel(
       
-      # Select variable for y-axis --------------------------------------------
+      # Select variable for y-axis ----------------------------------
       selectInput(inputId = "y", 
                   label = "Y-axis:",
                   choices = c("IMDB rating" = "imdb_rating", 
@@ -26,7 +26,7 @@ ui <- fluidPage(
                               "Runtime" = "runtime"), 
                   selected = "audience_score"),
       
-      # Select variable for x-axis --------------------------------------------
+      # Select variable for x-axis ----------------------------------
       selectInput(inputId = "x", 
                   label = "X-axis:",
                   choices = c("IMDB rating" = "imdb_rating", 
@@ -36,7 +36,7 @@ ui <- fluidPage(
                               "Runtime" = "runtime"), 
                   selected = "critics_score"),
       
-      # Select variable for color ---------------------------------------------
+      # Select variable for color -----------------------------------
       selectInput(inputId = "z", 
                   label = "Color by:",
                   choices = c("Title Type" = "title_type", 
@@ -46,40 +46,40 @@ ui <- fluidPage(
                               "Audience Rating" = "audience_rating"),
                   selected = "mpaa_rating"),
       
-      # Set alpha level -------------------------------------------------------
+      # Set alpha level ---------------------------------------------
       sliderInput(inputId = "alpha", 
                   label = "Alpha:", 
                   min = 0, max = 1, 
                   value = 0.5),
       
-      # Set point size --------------------------------------------------------
+      # Set point size ----------------------------------------------
       sliderInput(inputId = "size", 
                   label = "Size:", 
                   min = 0, max = 5, 
                   value = 2),
       
-      # Show data table -------------------------------------------------------
+      # Show data table ---------------------------------------------
       checkboxInput(inputId = "show_data",
                     label = "Show data table",
                     value = TRUE)
     ),
     
-    # Output ------------------------------------------------------------------
+    # Output --------------------------------------------------------
     mainPanel(
 
-      # Show scatterplot ------------------------------------------------------
+      # Show scatterplot --------------------------------------------
       plotOutput(outputId = "scatterplot"),
 
-      # Show data table -------------------------------------------------------
-      dataTableOutput(outputId = "moviestable")
+      # Show data table ---------------------------------------------
+      DT::dataTableOutput(outputId = "moviestable")
     )
   )
 )
 
-# Define server function required to create the scatterplot -------------------
+# Define server function required to create the scatterplot ---------
 server <- function(input, output) {
   
-  # Create the scatterplot object the plotOutput function is expecting --------
+  # Create scatterplot object the plotOutput function is expecting --
   output$scatterplot <- renderPlot({
     ggplot(data = movies, aes_string(x = input$x, y = input$y,
                                      color = input$z)) +
@@ -89,7 +89,7 @@ server <- function(input, output) {
            color = toTitleCase(str_replace_all(input$z, "_", " ")))
   })
   
-  # Print data table if checked -----------------------------------------------
+  # Print data table if checked -------------------------------------
   output$moviestable <- DT::renderDataTable(
     if(input$show_data){
       DT::datatable(data = movies[, 1:7], 
@@ -99,6 +99,6 @@ server <- function(input, output) {
   )
 }
 
-# Run the application ---------------------------------------------------------
+# Run the application -----------------------------------------------
 shinyApp(ui = ui, server = server)
 
