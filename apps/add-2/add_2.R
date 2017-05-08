@@ -21,4 +21,4 @@ server <- function(input, output) {
 }
 
 # Run the application 
-shinyApp(ui = ui, server = server, display.mode = "showcase")
+shinyApp(ui = ui, server = server)
