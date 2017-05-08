@@ -44,10 +44,3 @@ Slides and demo materials for the 2-day Intermediate Shiny Workshop at Genentech
 2 - 2:30pm 	      - Troubleshooting (10-troubleshooting)
 2:30 - 3pm        - Break
 3 - 4pm           - Guided sandbox exercise (11-sandbox)
-
-## Notes
-
-To be added before Day 2:
-
-- PDF slides for 05-adv-reactivity and 09-dashboards
-- A few additional apps as well as skeleton for guided sandbox exercise
