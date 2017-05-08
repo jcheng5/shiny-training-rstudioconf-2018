@@ -3,6 +3,7 @@ library(ggplot2)
 library(DT)
 library(stringr)
 library(dplyr)
+library(tools)
 load("movies.Rdata")
 
 # Define UI for application that plots features of movies ---------------------
