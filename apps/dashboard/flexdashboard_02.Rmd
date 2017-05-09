@@ -4,7 +4,7 @@ output:
  flexdashboard::flex_dashboard:
    orientation: columns
    source_code: embed
-   runtime: shiny
+runtime: shiny
 ---
 
 ```{r global, include=FALSE}
