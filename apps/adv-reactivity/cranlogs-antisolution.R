@@ -38,7 +38,7 @@ server <- function(input, output, session) {
       summarise(count = sum(count))
   })
   
-  # This doesn't work because assigning to output$whatever ISN'T saying "hey update this output", 
+  # This doesn't work because assigning to output$xyz ISN'T saying "hey update this output", 
   # but rather, "this is the recipe for this output, you (shiny) decide when to update it, if ever"
   observeEvent(input$update,{
     # Plot weekly downloads, plus trendline
