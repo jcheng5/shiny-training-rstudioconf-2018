@@ -117,7 +117,10 @@ server <- function(input, output) {
       factor(levels = input$selected_type) 
     counts <- table(types)
     
-    HTML(paste("There are", counts, input$selected_type, "movies in this dataset. <br>"))
+    tagList("There are", counts,
+      paste(input$selected_type, collapse = ", "), 
+      "movies in this dataset.",
+      tags$br())
   })
   
   # Print data table if checked -------------------------------------
