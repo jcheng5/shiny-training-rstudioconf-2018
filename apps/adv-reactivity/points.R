@@ -1,4 +1,5 @@
 library(shiny)
+library(ggplot2)
 
 # Define UI for specifying points on a plot -------------------------
 ui <- fluidPage(

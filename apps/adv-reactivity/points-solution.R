@@ -1,4 +1,6 @@
 library(shiny)
+library(ggplot2)
+library(magrittr) # For %>% operator
 
 # Define UI for specifying points on a plot -------------------------
 ui <- fluidPage(
@@ -33,7 +35,7 @@ server <- function(input, output, session) {
   })
   
   # Debounce
-  debounced_data <- debounce(data, 1000)
+  debounced_data <- data %>% debounce(1000)
   
   # Summarize data
   output$summary <- renderPrint({
