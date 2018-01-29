@@ -2,7 +2,7 @@ library(magrittr)
 library(dplyr)
 library(lubridate)
 
-get_nyt_archive <- function(year, month, day, api_key ="d90e7a004a4e47a488a524c4801c6e27")
+get_nyt_archive <- function(year, month, day, api_key ="<YOUR API KEY HERE>")
 {
   year = as.integer(year)
   month = as.integer(month)
