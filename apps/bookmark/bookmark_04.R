@@ -27,7 +27,7 @@ server <- function(input, output, session) {
 
   observeEvent(input$add, {
     vals$sum <- vals$sum + input$n
-  })
+  }, ignoreInit = TRUE)
   output$sum <- renderText({
     vals$sum
   })
