@@ -29,4 +29,4 @@ Please read the [workshop information thread](https://community.rstudio.com/t/in
 - 1:00pm - 1:45pm 	    - Troubleshooting (Dean, [07-troubleshooting](/slides/07-troubleshooting.pdf))
 - 1:45pm - 3:00pm       - Dashboards (Joe, [08-dashboards](/slides/08-dashboards.pdf))
 - 3:00pm - 3:30pm       - Break
-- 3:30pm - 5:00pm       - Q&A
+- 3:30pm - 5:00pm       - Q&A/Sandbox exercise
