@@ -12,4 +12,4 @@ ui <-
 server <-
   
   
-runApp(ui, server)
+shinyApp(ui, server)
